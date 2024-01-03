@@ -1,9 +1,27 @@
-import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, Switch } from "@nextui-org/react";
+"use client";
+
+import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 
 import LanguageSwitcher from "./languageSwitcher";
 import ThemeSwitcher from "./themeSwitcher";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Navigation = ({ lng }: { lng: any }) => {
+	const path = usePathname();
+
+	const [pathName, setPathName] = useState("");
+
+	useEffect(() => {
+		const pathArr = path.split("/");
+
+		if (pathArr.length === 2) {
+			setPathName("");
+		} else {
+			setPathName(pathArr[2]);
+		}
+	}, [path]);
+
 	return (
 		<Navbar className="bg-gray-800">
 			<NavbarBrand>
@@ -12,18 +30,18 @@ const Navigation = ({ lng }: { lng: any }) => {
 				</Link>
 			</NavbarBrand>
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
-				<NavbarItem>
-					<Link color="foreground" href="/">
+				<NavbarItem isActive={pathName === ""}>
+					<Link color={pathName === "" ? "primary" : "foreground"} href="/">
 						Dashboard
 					</Link>
 				</NavbarItem>
-				<NavbarItem isActive>
-					<Link href="#" aria-current="page">
+				<NavbarItem isActive={pathName === "posts"}>
+					<Link color={pathName === "posts" ? "primary" : "foreground"} href="/posts">
 						Posts
 					</Link>
 				</NavbarItem>
-				<NavbarItem>
-					<Link color="foreground" href="#">
+				<NavbarItem isActive={pathName === "calendar"}>
+					<Link color={pathName === "calendar" ? "primary" : "foreground"} href="/calendar">
 						Calendar
 					</Link>
 				</NavbarItem>

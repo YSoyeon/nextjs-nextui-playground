@@ -1,11 +1,11 @@
 import React from "react";
 import { Trans } from "react-i18next/TransWithoutContext";
 import { languages } from "../../i18n/settings";
-import { useTranslation } from "../../i18n";
 import Link from "next/link";
+import { useTranslation } from "@/app/i18n/client";
 
-const LanguageSwitcher = async ({ lng }: any) => {
-	const { t } = await useTranslation(lng, "footer");
+const LanguageSwitcher = ({ lng }: any) => {
+	const { t } = useTranslation(lng, "footer");
 
 	return (
 		<div>
