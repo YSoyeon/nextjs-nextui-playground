@@ -19,15 +19,20 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="mt-10 flex flex-col gap-4">
-      {data.map((post) => (
-        <Link key={post.id} href={`/posts/${post.id}`}>
-          <Card className="p-8 cursor-pointer">
-            {post.id}
-            {post.title}
-          </Card>
+    <div className="w-full p-10">
+      <div className="flex flex-col gap-4">
+        {data.map((post) => (
+          <Link key={post.id} href={`/posts/${post.id}`}>
+            <Card className="w-full p-8 cursor-pointer">
+              {post.id}
+              {post.title}
+            </Card>
+          </Link>
+        ))}
+        <Link key={'add-item'} href={`/posts/add`}>
+          <Card className="w-full p-8 cursor-pointer text-center	">+</Card>
         </Link>
-      ))}
+      </div>
     </div>
   );
 };

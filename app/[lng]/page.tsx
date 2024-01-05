@@ -1,10 +1,17 @@
+'use client';
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { defaultNS } from '../i18n/settings';
 import { useTranslation } from '../i18n/client';
 
-const Page = ({ params: { lng } }: any) => {
+const Page = ({ params: { lng, data } }: any) => {
   const { t } = useTranslation(lng, defaultNS);
+
+  useEffect(() => {
+    console.log('data');
+    console.log(data);
+  }, []);
 
   return (
     <>
