@@ -11,6 +11,14 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
+    "@tiptap/core": "^2.1.15",
+    "@tiptap/extension-code-block-lowlight": "^2.1.15",
+    "@tiptap/extension-image": "^2.1.15",
+    "@tiptap/extension-mention": "^2.1.15",
+    "@tiptap/extension-youtube": "^2.1.15",
+    "@tiptap/pm": "^2.1.15",
+    "@tiptap/react": "^2.1.15",
+    "@tiptap/starter-kit": "^2.1.15",
     "accept-language": "^3.0.18",
     "framer-motion": "^10.16.16",
     "i18next": "^23.7.13",
@@ -20,7 +28,8 @@
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18",
-    "react-i18next": "^14.0.0"
+    "react-i18next": "^14.0.0",
+    "react-icons": "^4.12.0"
   },
   "devDependencies": {
     "@types/node": "^20",
