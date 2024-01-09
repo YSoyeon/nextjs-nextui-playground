@@ -2,7 +2,8 @@ import { Editor } from '@tiptap/react';
 import React from 'react';
 import HeadingSelect from './HeadingSelect';
 import ToggleButton from '@/app/[lng]/components/button/ToggleButton';
-import { FaBold } from 'react-icons/fa';
+import { FaBold, FaCode, FaItalic, FaQuoteLeft } from 'react-icons/fa';
+import { BiCodeBlock } from 'react-icons/bi';
 
 type Props = {
   editor: Editor;
@@ -20,6 +21,34 @@ const Toolbar = ({ editor, selected, setSelected }: Props) => {
         aria-label="bold"
       >
         <FaBold />
+      </ToggleButton>
+      <ToggleButton
+        onClick={() => editor!.chain().focus().toggleItalic().run()}
+        selected={editor.isActive('italic')}
+        aria-label="italic"
+      >
+        <FaItalic />
+      </ToggleButton>
+      <ToggleButton
+        onClick={() => editor!.chain().focus().toggleCode().run()}
+        selected={editor.isActive('code')}
+        aria-label="code"
+      >
+        <FaCode />
+      </ToggleButton>
+      <ToggleButton
+        onClick={() => editor.chain().focus().toggleBlockquote().run()}
+        aria-label="blockQuote"
+        selected={editor.isActive('blockQuote')}
+      >
+        <FaQuoteLeft />
+      </ToggleButton>
+      <ToggleButton
+        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+        aria-label="codeBlock"
+        selected={editor.isActive('codeBlock')}
+      >
+        <BiCodeBlock />
       </ToggleButton>
     </div>
   );
