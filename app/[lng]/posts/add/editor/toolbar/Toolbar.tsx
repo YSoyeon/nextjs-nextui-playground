@@ -1,9 +1,15 @@
 import { Editor } from '@tiptap/react';
-import React from 'react';
+import React, { useState } from 'react';
 import HeadingSelect from './HeadingSelect';
 import ToggleButton from '@/app/[lng]/components/button/ToggleButton';
 import { FaBold, FaCode, FaItalic, FaQuoteLeft } from 'react-icons/fa';
 import { BiCodeBlock } from 'react-icons/bi';
+import { MdChecklist, MdImage } from 'react-icons/md';
+import { GoListOrdered, GoListUnordered } from 'react-icons/go';
+
+import { useDisclosure } from '@nextui-org/react';
+import ClearButton from './ClearButton';
+import MediaButton from './MediaButton';
 
 type Props = {
   editor: Editor;
@@ -38,8 +44,8 @@ const Toolbar = ({ editor, selected, setSelected }: Props) => {
       </ToggleButton>
       <ToggleButton
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        aria-label="blockQuote"
-        selected={editor.isActive('blockQuote')}
+        aria-label="blockquote"
+        selected={editor.isActive('blockquote')}
       >
         <FaQuoteLeft />
       </ToggleButton>
@@ -50,6 +56,30 @@ const Toolbar = ({ editor, selected, setSelected }: Props) => {
       >
         <BiCodeBlock />
       </ToggleButton>
+      <ToggleButton
+        onClick={() => editor.chain().focus().toggleBulletList().run()}
+        aria-label="bullettList"
+        selected={editor.isActive('bulletList')}
+      >
+        <GoListUnordered />
+      </ToggleButton>
+      <ToggleButton
+        onClick={() => editor.chain().focus().toggleOrderedList().run()}
+        aria-label="orderedList"
+        selected={editor.isActive('orderedList')}
+      >
+        <GoListOrdered />
+      </ToggleButton>
+      <ToggleButton
+        onClick={() => editor.chain().focus().toggleTaskList().run()}
+        aria-label="taskList"
+        selected={editor.isActive('taskList')}
+      >
+        <MdChecklist />
+      </ToggleButton>
+      <MediaButton editor={editor} type={'image'} />
+      <MediaButton editor={editor} type={'video'} />
+      <ClearButton editor={editor} />
     </div>
   );
 };

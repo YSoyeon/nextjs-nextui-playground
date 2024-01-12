@@ -11,11 +11,12 @@ const ToggleButton = ({ children, onClick, selected }: Props) => {
   const onClickButton = () => {
     const toggledState = !on;
     setOn(toggledState);
-    onClick(toggledState);
+    if (!on) onClick(toggledState);
   };
 
   useEffect(() => {
     console.log('selected : ', selected);
+    setOn(selected);
   }, [selected]);
   return (
     <button className={`p-1 ${on ? 'bg-slate-400 text-black rounded' : ''}`} onClick={onClickButton}>
