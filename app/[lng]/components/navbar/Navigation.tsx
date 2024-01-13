@@ -2,10 +2,11 @@
 
 import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 
-import LanguageSwitcher from "./languageSwitcher";
-import ThemeSwitcher from "./themeSwitcher";
+import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import SignController from "./SignController";
 
 const Navigation = ({ lng }: { lng: any }) => {
 	const path = usePathname();
@@ -50,6 +51,7 @@ const Navigation = ({ lng }: { lng: any }) => {
 				<NavbarItem className="hidden lg:flex">
 					<ThemeSwitcher />
 					<LanguageSwitcher lng={lng} />
+					<SignController />
 				</NavbarItem>
 			</NavbarContent>
 		</Navbar>
