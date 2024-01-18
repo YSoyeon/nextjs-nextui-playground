@@ -10,6 +10,7 @@
     "server": "json-server --watch db.json --port 4444"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.4",
     "@nextui-org/react": "^2.2.9",
     "@tiptap/core": "^2.1.15",
     "@tiptap/extension-code-block-lowlight": "^2.1.15",
@@ -21,6 +22,7 @@
     "@tiptap/pm": "^2.1.15",
     "@tiptap/react": "^2.1.15",
     "@tiptap/starter-kit": "^2.1.15",
+    "@types/negotiator": "^0.6.3",
     "@types/uuid": "^9.0.7",
     "accept-language": "^3.0.18",
     "framer-motion": "^10.16.16",
@@ -29,6 +31,7 @@
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-resources-to-backend": "^1.2.0",
     "lowlight": "^3.1.0",
+    "negotiator": "^0.6.3",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
