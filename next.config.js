@@ -17,8 +17,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
-/*
-source: '/:path((?!_next|en|ko).*)*', // en|ko로 시작하는 path 제외
-destination: '/ko/:path*',
-*/
