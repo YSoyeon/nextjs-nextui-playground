@@ -11,6 +11,7 @@ import ClearButton from './ClearButton';
 import MediaButton from './MediaButton';
 import LockTextButton from './LockTextButton';
 import { Node } from '@tiptap/pm/model';
+import CommentButton from './CommentButton';
 
 type Props = {
   editor: Editor;
@@ -87,7 +88,6 @@ const Toolbar = ({ editor, selected, setSelected, activeNode }: Props) => {
       </ToggleButton>
       <MediaButton editor={editor} type={'image'} />
       <MediaButton editor={editor} type={'video'} />
-
       <LockTextButton
         editor={editor}
         isBlockSelected={isBlockSelected}
@@ -95,7 +95,7 @@ const Toolbar = ({ editor, selected, setSelected, activeNode }: Props) => {
         setBlocks={setBlocks}
         activeNode={activeNode}
       />
-
+      <CommentButton editor={editor} />
       <ClearButton editor={editor} />
     </div>
   );
