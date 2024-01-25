@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 type Props = {
-  isOpen: boolean;
-  children: React.ReactNode;
+	isOpen: boolean;
+	children: React.ReactNode;
 };
 const Drawer = ({ isOpen, children }: Props) => {
-  useEffect(() => {
-    console.log('isopeen');
-    console.log(isOpen);
-  }, [isOpen]);
-  return (
-    <div className={`fixed top-600 ${isOpen ? '-right-20' : '-right-50'} bg-white shadow-black ease-in z-10`}>
-      {children}
-    </div>
-  );
+	return (
+		<div
+			className={`fixed inset-y-0 right-0 w-64 bg-white text-white p-4 transform ${
+				isOpen ? "translate-x-0" : "translate-x-full"
+			} transition-transform ease-in-out duration-300 border-2 z-50`}
+		>
+			{children}
+		</div>
+	);
 };
 
 export default Drawer;
