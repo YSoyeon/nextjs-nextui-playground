@@ -1,5 +1,5 @@
 import { Editor } from '@tiptap/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 const headings = [
   { key: 'normal', value: 'Normal' },
@@ -15,10 +15,10 @@ type Level = 1 | 2 | 3 | 4 | 5 | 6;
 
 type Props = {
   editor: Editor;
-  selected: string;
-  setSelected: React.Dispatch<React.SetStateAction<string>>;
 };
-const HeadingSelect = ({ editor, selected, setSelected }: Props) => {
+const HeadingSelect = ({ editor }: Props) => {
+  const [selected, setSelected] = useState('');
+
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
 

@@ -10,25 +10,21 @@ import { GoListOrdered, GoListUnordered } from 'react-icons/go';
 import ClearButton from './ClearButton';
 import MediaButton from './MediaButton';
 import LockTextButton from './LockTextButton';
-import { Node } from '@tiptap/pm/model';
+import CommentButton from './CommentButton';
 
 type Props = {
   editor: Editor;
-  selected: string;
-  setSelected: React.Dispatch<React.SetStateAction<string>>;
-  activeNode: Node;
+  activeSecuredId: string;
+  activateCommentingMode: () => void;
 };
 
-const Toolbar = ({ editor, selected, setSelected, activeNode }: Props) => {
+const Toolbar = ({ editor, activeSecuredId, activateCommentingMode }: Props) => {
   const [blocks, setBlocks] = useState<BlockType[]>([]);
-
   const [isBlockSelected, setIsBlockSelected] = useState(false);
 
-  const [isLockDisabled, setIsLockDisabled] = useState(true);
-
   return (
-    <div className="flex gap-3 border-solid border-1 border-foreground p-2">
-      <HeadingSelect editor={editor} selected={selected} setSelected={setSelected} />
+    <div className="flex gap-3 border-solid border-1 border-gray-300 p-2">
+      <HeadingSelect editor={editor} />
       <ToggleButton
         onClick={() => editor!.chain().focus().toggleBold().run()}
         selected={editor.isActive('bold')}
@@ -87,15 +83,14 @@ const Toolbar = ({ editor, selected, setSelected, activeNode }: Props) => {
       </ToggleButton>
       <MediaButton editor={editor} type={'image'} />
       <MediaButton editor={editor} type={'video'} />
-
       <LockTextButton
         editor={editor}
         isBlockSelected={isBlockSelected}
         blocks={blocks}
         setBlocks={setBlocks}
-        activeNode={activeNode}
+        activeSecuredId={activeSecuredId}
       />
-
+      <CommentButton editor={editor} activateCommentingMode={activateCommentingMode} />
       <ClearButton editor={editor} />
     </div>
   );
