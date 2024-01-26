@@ -13,6 +13,7 @@ import { v4 } from 'uuid';
 import _ from 'lodash';
 import BubbleToolbar from './toolbar/BubbleToolbar';
 import AddComment from './AddComment';
+import { CardBody } from '@nextui-org/react';
 
 const Editor = () => {
   const [isActiveDrawer, setIsActiveDrawer] = useState<boolean>(false);
@@ -65,9 +66,9 @@ const Editor = () => {
   };
 
   return (
-    <div>
+    <CardBody>
       {editor && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3 justify-center items-center">
           <Toolbar
             editor={editor}
             activeSecuredId={activeSecuredId}
@@ -75,7 +76,7 @@ const Editor = () => {
           />
           <EditorContent
             className="editor-content"
-            style={{ border: '1px solid #ccc', padding: '0.5rem 1rem', width: '40rem', height: '30rem' }}
+            style={{ border: '1px solid #ccc', padding: '0.5rem 1rem', width: '700px', height: '30rem' }}
             editor={editor}
             onClick={activateEditor}
           />
@@ -100,7 +101,7 @@ const Editor = () => {
           addComment={addComment}
         />
       </Drawer>
-    </div>
+    </CardBody>
   );
 };
 

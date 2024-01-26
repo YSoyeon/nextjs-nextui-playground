@@ -23,7 +23,7 @@ const Toolbar = ({ editor, activeSecuredId, activateCommentingMode }: Props) => 
   const [isBlockSelected, setIsBlockSelected] = useState(false);
 
   return (
-    <div className="flex gap-3 border-solid border-1 border-gray-300 p-2">
+    <div className="w-[700px] flex gap-3 border-solid border-1 border-gray-300 p-2">
       <HeadingSelect editor={editor} />
       <ToggleButton
         onClick={() => editor!.chain().focus().toggleBold().run()}
