@@ -11,7 +11,7 @@ declare module '@tiptap/core' {
       /**
        * Unset a comment (remove)
        */
-      unsetComment: (commentId: string) => ReturnType;
+      unsetComment: (commentId?: string) => ReturnType;
     };
   }
 }
@@ -100,9 +100,12 @@ export const Comment = Mark.create<CommentOptions, CommentStorage>({
           return true;
         },
       unsetComment:
-        (commentId) =>
-        ({ tr, dispatch }) => {
-          if (!commentId) return false;
+        (commentId?: string) =>
+        ({ tr, dispatch, commands }) => {
+          if (!commentId) {
+            commands.unsetMark('comment');
+            return false;
+          }
 
           const commentMarksWithRange: MarkWithRange[] = [];
 

@@ -1,34 +1,33 @@
-import React, { useState } from "react";
-import { BiCommentDetail } from "react-icons/bi";
-import { Editor } from "@tiptap/react";
-import { v4 } from "uuid";
+import React, { useState } from 'react';
+import { BiCommentDetail } from 'react-icons/bi';
+import { Editor } from '@tiptap/react';
 
 type Props = {
-	editor: Editor;
-	activateCommentingMode: () => void;
+  editor: Editor;
+  activateCommentingMode: () => void;
 };
 
 const CommentButton = ({ editor, activateCommentingMode }: Props) => {
-	const [isActive, setIsActive] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
-	const onClick = () => {
-		const { from, to } = editor.state.selection!;
-		const isSelected = from !== to;
+  const onClick = () => {
+    const { from, to } = editor.state.selection!;
+    const isSelected = from !== to;
 
-		if (!isSelected) return;
+    setIsActive((prev) => !prev);
 
+    if (!isSelected) return;
     activateCommentingMode();
-	
-	};
+  };
 
-	return (
-		<button
-			onClick={onClick}
-			className={`p-1 ${isActive ? "bg-slate-400 text-black rounded" : ""}`}
-			aria-label="securedText"
-		>
-			<BiCommentDetail />
-		</button>
-	);
+  return (
+    <button
+      onClick={onClick}
+      className={`p-1 ${isActive ? 'bg-slate-400 text-black rounded' : ''}`}
+      aria-label="securedText"
+    >
+      <BiCommentDetail />
+    </button>
+  );
 };
 export default CommentButton;
