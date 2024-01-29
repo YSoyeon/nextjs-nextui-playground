@@ -1,12 +1,17 @@
-"use client";
+'use client';
 
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-	return (
-		<html>
-			<body>
-				<h2>Something went wrong!</h2>
-				<button onClick={() => reset()}>Try again</button>
-			</body>
-		</html>
-	);
+  return (
+    <html>
+      <body>
+        <div className="flex flex-col items-center justify-center h-screen">
+          <h1 className="text-4xl font-bold mb-4">Oops! Something went wrong.</h1>
+          <p className="text-gray-600 text-lg mb-8">We apologize for the inconvenience. Please try again later.</p>
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={reset}>
+            Retry
+          </button>
+        </div>
+      </body>
+    </html>
+  );
 }
