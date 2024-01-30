@@ -11,6 +11,8 @@ const CommentButton = ({ editor, activateCommentingMode }: Props) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const onClick = () => {
+    alert('todo');
+    return;
     const { from, to } = editor.state.selection!;
     const isSelected = from !== to;
 
