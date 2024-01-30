@@ -16,10 +16,11 @@ type Props = {
   editor: Editor;
   activeSecuredId: string;
   activateCommentingMode: () => void;
+  blocks: BlockType[];
+  setBlocks: React.Dispatch<React.SetStateAction<BlockType[]>>;
 };
 
-const Toolbar = ({ editor, activeSecuredId, activateCommentingMode }: Props) => {
-  const [blocks, setBlocks] = useState<BlockType[]>([]);
+const Toolbar = ({ editor, activeSecuredId, activateCommentingMode, blocks, setBlocks }: Props) => {
   const [isBlockSelected, setIsBlockSelected] = useState(false);
 
   return (

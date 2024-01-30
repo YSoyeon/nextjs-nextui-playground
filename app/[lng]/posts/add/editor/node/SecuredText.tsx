@@ -1,3 +1,4 @@
+import { descrypt } from '@/lib/util/editor';
 import { Mark, mergeAttributes, Range } from '@tiptap/core';
 import { Mark as PMMark } from '@tiptap/pm/model';
 
@@ -126,7 +127,7 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
           });
 
           //tr.replaceSelectionWith(this.editor.schema.text(text));
-          tr.replaceWith(lockedInfo.from, lockedInfo.to, this.editor.schema.text(lockedInfo.content));
+          tr.replaceWith(lockedInfo.from, lockedInfo.to, this.editor.schema.text(descrypt(lockedInfo.encrypted)));
 
           return dispatch?.(tr);
         },

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 
 import { FaLock, FaLockOpen } from 'react-icons/fa';
-import { getRandomSecuredLength } from '@/lib/util/editor';
+import { encrypt, getRandomSecuredLength } from '@/lib/util/editor';
 import { useDisclosure } from '@nextui-org/react';
 import AlertModal from '@/app/components/modal/AlertModal';
 
@@ -52,7 +52,7 @@ const LockTextButton = ({ editor, isBlockSelected, blocks, setBlocks, activeSecu
 
       const lockInfo: BlockType = {
         id: `b${v4()}b`,
-        content: text,
+        encrypted: encrypt(text),
         from: from,
         to: from + lockLength,
       };

@@ -1,12 +1,8 @@
+import React from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import React, { useEffect } from 'react';
 
 const SignController = () => {
   const { data: session } = useSession();
-
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
 
   return (
     <div>
