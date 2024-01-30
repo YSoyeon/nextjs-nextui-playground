@@ -1,6 +1,6 @@
 declare type BlockType = {
   id: string;
-  content: string;
+  encrypted: string;
   from: number;
   to: number;
 };

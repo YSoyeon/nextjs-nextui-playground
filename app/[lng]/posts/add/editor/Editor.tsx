@@ -23,8 +23,9 @@ const Editor = () => {
   const [activeCommentId, setActiveCommentId] = useState<string>('');
   const [isCommentingMode, setIsCommentingMode] = useState<boolean>(false);
 
+  const [blocks, setBlocks] = useState<BlockType[]>([]);
+
   const activeCommentText = (commentId: string) => {
-    console.log('activeCommentText , comment Id is ', commentId);
     if (commentId) {
       setActiveCommentId(commentId);
       setIsActiveDrawer(true);
@@ -34,7 +35,6 @@ const Editor = () => {
   };
 
   const activeSecuredText = (securedId: string) => {
-    console.log('activeSecuredText , securedId is ', securedId);
     setActiveSecuredId(securedId);
   };
 
@@ -73,6 +73,8 @@ const Editor = () => {
             editor={editor}
             activeSecuredId={activeSecuredId}
             activateCommentingMode={() => setIsCommentingMode(true)}
+            blocks={blocks}
+            setBlocks={setBlocks}
           />
           <EditorContent
             className="editor-content"
