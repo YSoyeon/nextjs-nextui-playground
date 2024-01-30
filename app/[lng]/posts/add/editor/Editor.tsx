@@ -13,7 +13,8 @@ import { v4 } from 'uuid';
 import _ from 'lodash';
 import BubbleToolbar from './toolbar/BubbleToolbar';
 import AddComment from './AddComment';
-import { CardBody } from '@nextui-org/react';
+import { Card, CardBody, Tab, Tabs } from '@nextui-org/react';
+import Preview from './Preview';
 
 const Editor = () => {
   const [isActiveDrawer, setIsActiveDrawer] = useState<boolean>(false);
@@ -69,32 +70,49 @@ const Editor = () => {
     <CardBody>
       {editor && (
         <div className="flex flex-col gap-3 justify-center items-center">
-          <Toolbar
-            editor={editor}
-            activeSecuredId={activeSecuredId}
-            activateCommentingMode={() => setIsCommentingMode(true)}
-            blocks={blocks}
-            setBlocks={setBlocks}
-          />
-          <EditorContent
-            className="editor-content"
-            style={{ border: '1px solid #ccc', padding: '0.5rem 1rem', width: '700px', height: '30rem' }}
-            editor={editor}
-            onClick={activateEditor}
-          />
-          <BubbleMenu editor={editor}>
-            <div className="bg-white border-2 p-1">
-              {isCommentingMode ? (
-                <AddComment
-                  editor={editor}
-                  setComment={(comment) => setComments((prev) => [...prev, comment])}
-                  close={() => setIsCommentingMode(false)}
-                />
-              ) : (
-                <BubbleToolbar editor={editor} activateCommentingMode={() => setIsCommentingMode(true)} />
-              )}
-            </div>
-          </BubbleMenu>
+          <div>
+            <Tabs>
+              <Tab key="write" title="Write">
+                <Card>
+                  <CardBody>
+                    <Toolbar
+                      editor={editor}
+                      activeSecuredId={activeSecuredId}
+                      activateCommentingMode={() => setIsCommentingMode(true)}
+                      blocks={blocks}
+                      setBlocks={setBlocks}
+                    />
+                    <EditorContent
+                      className="editor-content"
+                      style={{ border: '1px solid #ccc', padding: '0.5rem 1rem', width: '700px', height: '30rem' }}
+                      editor={editor}
+                      onClick={activateEditor}
+                    />
+                    <BubbleMenu editor={editor}>
+                      <div className="bg-white border-2 p-1">
+                        {isCommentingMode ? (
+                          <AddComment
+                            editor={editor}
+                            setComment={(comment) => setComments((prev) => [...prev, comment])}
+                            close={() => setIsCommentingMode(false)}
+                          />
+                        ) : (
+                          <BubbleToolbar editor={editor} activateCommentingMode={() => setIsCommentingMode(true)} />
+                        )}
+                      </div>
+                    </BubbleMenu>
+                  </CardBody>
+                </Card>
+              </Tab>
+              <Tab key="preview" title="Preview">
+                <Card>
+                  <CardBody>
+                    <Preview content={editor.getHTML()} />
+                  </CardBody>
+                </Card>
+              </Tab>
+            </Tabs>
+          </div>
         </div>
       )}
       <Drawer isOpen={isActiveDrawer}>
