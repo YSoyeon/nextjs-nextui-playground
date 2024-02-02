@@ -55,10 +55,16 @@ const MediaButton = ({ editor, type }: Props) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">{mediaType} 추가</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                {mediaType} 추가
+              </ModalHeader>
               <ModalBody>
                 <label>{mediaType} URL</label>
-                <input className="border-1 border-black rounded p-1 rounded-sm" type="text" ref={inputRef} />
+                <input
+                  className="border-1 border-black rounded p-1 rounded-sm"
+                  type="text"
+                  ref={inputRef}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" onPress={onClose}>

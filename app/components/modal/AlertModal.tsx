@@ -1,5 +1,12 @@
 import React from 'react';
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+} from '@nextui-org/react';
 
 type Props = {
   isOpen: boolean;
@@ -9,13 +16,21 @@ type Props = {
   content: React.ReactNode;
 };
 
-const AlertModal = ({ isOpen, onOpenChange, onConfirm, title, content }: Props) => {
+const AlertModal = ({
+  isOpen,
+  onOpenChange,
+  onConfirm,
+  title,
+  content,
+}: Props) => {
   return (
     <Modal backdrop="opaque" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
         {(onClose) => (
           <>
-            {title && <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>}
+            {title && (
+              <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
+            )}
             <ModalBody>{content}</ModalBody>
             <ModalFooter>
               <Button

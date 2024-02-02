@@ -23,7 +23,15 @@ const AddComment = ({ editor, setComment, close }: Props) => {
     const newComment: CommentType = {
       parentId: `a${v4()}a`,
       content: text,
-      comments: [{ id: `c${v4()}c`, userName: 'soyeon', comment: commentText, replies: [], createdAt: new Date() }],
+      comments: [
+        {
+          id: `c${v4()}c`,
+          userName: 'soyeon',
+          comment: commentText,
+          replies: [],
+          createdAt: new Date(),
+        },
+      ],
     };
     editor?.commands.setComment(newComment.parentId);
     setComment(newComment);

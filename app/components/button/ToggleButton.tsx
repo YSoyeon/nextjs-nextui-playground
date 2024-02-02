@@ -19,7 +19,10 @@ const ToggleButton = ({ children, onClick, selected }: Props) => {
     setOn(selected);
   }, [selected]);
   return (
-    <button className={`p-1 ${on ? 'bg-slate-400 text-black rounded' : ''}`} onClick={onClickButton}>
+    <button
+      className={`p-1 ${on ? 'bg-slate-400 text-black rounded' : ''}`}
+      onClick={onClickButton}
+    >
       {children}
     </button>
   );

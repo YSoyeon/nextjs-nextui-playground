@@ -39,7 +39,8 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
     return {
       securedId: {
         default: null,
-        parseHTML: (el) => (el as HTMLSpanElement).getAttribute('data-secured-id'),
+        parseHTML: (el) =>
+          (el as HTMLSpanElement).getAttribute('data-secured-id'),
         renderHTML: (attrs) => ({ 'data-secured-id': attrs.securedId }),
       },
     };
@@ -49,13 +50,19 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
     return [
       {
         tag: 'span[data-secured-id]',
-        getAttrs: (el) => !!(el as HTMLSpanElement).getAttribute('data-secured-id')?.trim() && null,
+        getAttrs: (el) =>
+          !!(el as HTMLSpanElement).getAttribute('data-secured-id')?.trim() &&
+          null,
       },
     ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    return [
+      'span',
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
+      0,
+    ];
   },
 
   onSelectionUpdate() {
@@ -90,11 +97,15 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
         (securedId, lockLength) =>
         ({ commands, tr }) => {
           if (!securedId) return false;
-          tr.replaceSelectionWith(this.editor.schema.text('X'.repeat(lockLength)));
+          tr.replaceSelectionWith(
+            this.editor.schema.text('X'.repeat(lockLength)),
+          );
 
           const { from } = this.editor.state.selection!;
 
-          const mark = this.editor.schema.marks.securedText.create({ securedId });
+          const mark = this.editor.schema.marks.securedText.create({
+            securedId,
+          });
           tr.addMark(from, from + lockLength, mark);
           commands.setMark('securedText', { securedId });
           return true;
@@ -108,7 +119,9 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
 
           tr.doc.descendants((node, pos) => {
             const securedMark = node.marks.find(
-              (mark) => mark.type.name === 'securedText' && mark.attrs.securedId === lockedInfo.id
+              (mark) =>
+                mark.type.name === 'securedText' &&
+                mark.attrs.securedId === lockedInfo.id,
             );
 
             if (!securedMark) return;
@@ -127,7 +140,11 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
           });
 
           //tr.replaceSelectionWith(this.editor.schema.text(text));
-          tr.replaceWith(lockedInfo.from, lockedInfo.to, this.editor.schema.text(descrypt(lockedInfo.encrypted)));
+          tr.replaceWith(
+            lockedInfo.from,
+            lockedInfo.to,
+            this.editor.schema.text(descrypt(lockedInfo.encrypted)),
+          );
 
           return dispatch?.(tr);
         },

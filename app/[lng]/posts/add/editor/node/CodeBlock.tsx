@@ -23,11 +23,13 @@ const CodeBlock = ({
       >
         <option value="null">auto</option>
         <option disabled>—</option>
-        {extension.options.lowlight.listLanguages().map((lang: any, index: number) => (
-          <option key={index} value={lang}>
-            {lang}
-          </option>
-        ))}
+        {extension.options.lowlight
+          .listLanguages()
+          .map((lang: any, index: number) => (
+            <option key={index} value={lang}>
+              {lang}
+            </option>
+          ))}
       </select>
       <pre>
         <NodeViewContent as="code" />

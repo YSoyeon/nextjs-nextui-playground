@@ -15,7 +15,13 @@ type Props = {
   activeSecuredId: string;
 };
 
-const LockTextButton = ({ editor, isBlockSelected, blocks, setBlocks, activeSecuredId }: Props) => {
+const LockTextButton = ({
+  editor,
+  isBlockSelected,
+  blocks,
+  setBlocks,
+  activeSecuredId,
+}: Props) => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -40,7 +46,9 @@ const LockTextButton = ({ editor, isBlockSelected, blocks, setBlocks, activeSecu
         return block.id !== securedId;
       });
 
-      !editor?.isDestroyed && lockedInfo && editor?.commands.unsetLock(lockedInfo);
+      !editor?.isDestroyed &&
+        lockedInfo &&
+        editor?.commands.unsetLock(lockedInfo);
       setBlocks(filtered);
     } else {
       const { from, to } = editor?.view.state.selection!;
@@ -70,7 +78,11 @@ const LockTextButton = ({ editor, isBlockSelected, blocks, setBlocks, activeSecu
       aria-label="securedText"
     >
       {isActive ? <FaLock /> : <FaLockOpen />}
-      <AlertModal content={'개행된 문자열은 암호화할 수 없습니다.'} isOpen={isOpen} onOpenChange={onOpenChange} />
+      <AlertModal
+        content={'개행된 문자열은 암호화할 수 없습니다.'}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      />
     </button>
   );
 };

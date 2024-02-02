@@ -33,12 +33,16 @@ const ClearButton = ({ editor }: Props) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">내용 삭제</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                내용 삭제
+              </ModalHeader>
               <ModalBody>
                 {!clearLoading ? (
                   <p>
                     에디터에 작성된 내용을 모두 지우시겠습니까? <br />{' '}
-                    <span className="text-rose-600">⚠️지운 내용은 복구할 수 없습니다.</span>
+                    <span className="text-rose-600">
+                      ⚠️지운 내용은 복구할 수 없습니다.
+                    </span>
                   </p>
                 ) : (
                   <Spinner />

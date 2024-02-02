@@ -2,7 +2,15 @@
 
 import React, { useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { CardBody, Input, Listbox, ListboxItem, Select, SelectItem, Selection } from '@nextui-org/react';
+import {
+  CardBody,
+  Input,
+  Listbox,
+  ListboxItem,
+  Select,
+  SelectItem,
+  Selection,
+} from '@nextui-org/react';
 import { IoMdSearch } from 'react-icons/io';
 
 async function getCWE() {
@@ -19,9 +27,13 @@ export default function Weakness() {
   });
 
   const [clusterList] = useState<ClusterType[]>(
-    cwe ? [{ id: -1, name: 'All clusters', description: '' }, ...cwe.clusters] : []
+    cwe
+      ? [{ id: -1, name: 'All clusters', description: '' }, ...cwe.clusters]
+      : [],
   );
-  const [weakList, setWeakList] = useState<WeaknessType[]>(cwe ? cwe.weaknesses : []);
+  const [weakList, setWeakList] = useState<WeaknessType[]>(
+    cwe ? cwe.weaknesses : [],
+  );
   const [clusterWeakList, setClusterWeakList] = useState<WeaknessType[]>([]); //검색 시 선택된 클러스터내에서 검색하기 위해 정의
   const [selectedCwe, setSelectedCwe] = useState<WeaknessType | null>(null);
 
@@ -30,7 +42,7 @@ export default function Weakness() {
     if (selectedKey === -1) setWeakList(cwe.weaknesses);
     else {
       const filteredData = cwe.weaknesses.filter((value: WeaknessType) =>
-        value.cluster_ids.some((id) => selectedKey === id)
+        value.cluster_ids.some((id) => selectedKey === id),
       );
       setWeakList(filteredData);
       setClusterWeakList(filteredData);
@@ -42,7 +54,9 @@ export default function Weakness() {
     if (!searchKeyword) setWeakList(clusterWeakList);
 
     const regex = new RegExp(searchKeyword, 'gi');
-    setWeakList(() => clusterWeakList.filter((value) => regex.test(value.name)));
+    setWeakList(() =>
+      clusterWeakList.filter((value) => regex.test(value.name)),
+    );
   };
 
   return (
@@ -69,7 +83,12 @@ export default function Weakness() {
             label="Select Asset Type"
             classNames={{
               base: ['max-w-xs'],
-              trigger: ['bg-transparent', 'shadow-none', 'rounded-none', 'border-l-1'],
+              trigger: [
+                'bg-transparent',
+                'shadow-none',
+                'rounded-none',
+                'border-l-1',
+              ],
             }}
             onSelectionChange={onSelectCluster}
           >
@@ -82,7 +101,11 @@ export default function Weakness() {
         </div>
         <Listbox className="h-[300px] overflow-y-auto	" aria-label="Actions">
           {weakList.map((weakness) => (
-            <ListboxItem key={weakness.id} onClick={() => setSelectedCwe(weakness)} textValue={weakness.name}>
+            <ListboxItem
+              key={weakness.id}
+              onClick={() => setSelectedCwe(weakness)}
+              textValue={weakness.name}
+            >
               {weakness.name}({weakness.external_id})
             </ListboxItem>
           ))}
@@ -92,7 +115,10 @@ export default function Weakness() {
         <span>
           <span className="text-slate-500">Currently selected:</span>
           {selectedCwe ? (
-            <span className="text-blue-600 cursor-pointer" onClick={() => setSelectedCwe(null)}>
+            <span
+              className="text-blue-600 cursor-pointer"
+              onClick={() => setSelectedCwe(null)}
+            >
               (Deselect)
             </span>
           ) : (

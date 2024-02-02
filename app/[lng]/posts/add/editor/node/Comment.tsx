@@ -44,7 +44,8 @@ export const Comment = Mark.create<CommentOptions, CommentStorage>({
     return {
       commentId: {
         default: null,
-        parseHTML: (el) => (el as HTMLSpanElement).getAttribute('data-comment-id'),
+        parseHTML: (el) =>
+          (el as HTMLSpanElement).getAttribute('data-comment-id'),
         renderHTML: (attrs) => ({ 'data-comment-id': attrs.commentId }),
       },
     };
@@ -54,13 +55,19 @@ export const Comment = Mark.create<CommentOptions, CommentStorage>({
     return [
       {
         tag: 'span[data-comment-id]',
-        getAttrs: (el) => !!(el as HTMLSpanElement).getAttribute('data-comment-id')?.trim() && null,
+        getAttrs: (el) =>
+          !!(el as HTMLSpanElement).getAttribute('data-comment-id')?.trim() &&
+          null,
       },
     ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    return [
+      'span',
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
+      0,
+    ];
   },
 
   onSelectionUpdate() {
@@ -111,7 +118,9 @@ export const Comment = Mark.create<CommentOptions, CommentStorage>({
 
           tr.doc.descendants((node, pos) => {
             const commentMark = node.marks.find(
-              (mark) => mark.type.name === 'comment' && mark.attrs.commentId === commentId
+              (mark) =>
+                mark.type.name === 'comment' &&
+                mark.attrs.commentId === commentId,
             );
 
             if (!commentMark) return;

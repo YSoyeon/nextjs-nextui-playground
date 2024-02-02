@@ -13,9 +13,17 @@ function getLocale(request: any) {
 export function middleware(req: any) {
   const lng = getLocale(req);
 
-  const isPathStartsWithLocale = locales.some((v) => req.nextUrl.pathname.startsWith(`/${v}`));
-  if (lng !== defaultLocale && !isPathStartsWithLocale && !req.nextUrl.pathname.startsWith('/_next')) {
-    return NextResponse.redirect(new URL(`/${lng}${req.nextUrl.pathname}`, req.url));
+  const isPathStartsWithLocale = locales.some((v) =>
+    req.nextUrl.pathname.startsWith(`/${v}`),
+  );
+  if (
+    lng !== defaultLocale &&
+    !isPathStartsWithLocale &&
+    !req.nextUrl.pathname.startsWith('/_next')
+  ) {
+    return NextResponse.redirect(
+      new URL(`/${lng}${req.nextUrl.pathname}`, req.url),
+    );
   }
 
   return NextResponse.next();

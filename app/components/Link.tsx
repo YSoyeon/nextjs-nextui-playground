@@ -15,7 +15,8 @@ const Link = ({ href, children }: Props) => {
   const currentLocale = currentPathname.split('/')[1];
   const isExistsLanguage = locales.some((v) => v === currentLocale);
 
-  if (isExistsLanguage) return <NextLink href={`/${currentLocale}/${href}`}>{children}</NextLink>;
+  if (isExistsLanguage)
+    return <NextLink href={`/${currentLocale}/${href}`}>{children}</NextLink>;
 
   return <NextLink href={href}>{children}</NextLink>;
 };

@@ -6,7 +6,11 @@ import Weakness from './weakness/Weakness';
 import ReportCard from './ReportCard';
 
 const Page = () => {
-  const contents: { title: string; description: string; content: React.ReactNode }[] = [
+  const contents: {
+    title: string;
+    description: string;
+    content: React.ReactNode;
+  }[] = [
     {
       title: 'Weakness',
       description:

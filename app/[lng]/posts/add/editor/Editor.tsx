@@ -78,7 +78,12 @@ const Editor = () => {
           />
           <EditorContent
             className="editor-content"
-            style={{ border: '1px solid #ccc', padding: '0.5rem 1rem', width: '700px', height: '30rem' }}
+            style={{
+              border: '1px solid #ccc',
+              padding: '0.5rem 1rem',
+              width: '700px',
+              height: '30rem',
+            }}
             editor={editor}
             onClick={activateEditor}
           />
@@ -87,11 +92,16 @@ const Editor = () => {
               {isCommentingMode ? (
                 <AddComment
                   editor={editor}
-                  setComment={(comment) => setComments((prev) => [...prev, comment])}
+                  setComment={(comment) =>
+                    setComments((prev) => [...prev, comment])
+                  }
                   close={() => setIsCommentingMode(false)}
                 />
               ) : (
-                <BubbleToolbar editor={editor} activateCommentingMode={() => setIsCommentingMode(true)} />
+                <BubbleToolbar
+                  editor={editor}
+                  activateCommentingMode={() => setIsCommentingMode(true)}
+                />
               )}
             </div>
           </BubbleMenu>
@@ -99,7 +109,11 @@ const Editor = () => {
       )}
       <Drawer isOpen={isActiveDrawer}>
         <CommentList
-          commentObj={comments.filter((comment) => comment.parentId === activeCommentId)[0]}
+          commentObj={
+            comments.filter(
+              (comment) => comment.parentId === activeCommentId,
+            )[0]
+          }
           addComment={addComment}
         />
       </Drawer>

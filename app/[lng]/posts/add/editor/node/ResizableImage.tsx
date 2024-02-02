@@ -1,7 +1,14 @@
 import { NodeViewProps } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
 import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
-import React, { CSSProperties, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
 const useEvent = <T extends (...args: any[]) => any>(handler: T): T => {
   const handlerRef = useRef<T | null>(null);
@@ -25,11 +32,16 @@ const ResizableImage = ({ node, updateAttributes }: NodeViewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const [editing, setEditing] = useState(false);
-  const [resizingStyle, setResizingStyle] = useState<Pick<CSSProperties, 'width'> | undefined>();
+  const [resizingStyle, setResizingStyle] = useState<
+    Pick<CSSProperties, 'width'> | undefined
+  >();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setEditing(false);
       }
     };
@@ -39,32 +51,37 @@ const ResizableImage = ({ node, updateAttributes }: NodeViewProps) => {
     };
   }, [editing]);
 
-  const handleMouseDown = useEvent((event: React.MouseEvent<HTMLDivElement>) => {
-    if (!imgRef.current) return;
-    event.preventDefault();
-    const direction = event.currentTarget.dataset.direction || '--';
-    const initialXPosition = event.clientX;
-    const currentWidth = imgRef.current.width;
-    let newWidth = currentWidth;
-    const transform = direction[1] === 'w' ? -1 : 1;
+  const handleMouseDown = useEvent(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      if (!imgRef.current) return;
+      event.preventDefault();
+      const direction = event.currentTarget.dataset.direction || '--';
+      const initialXPosition = event.clientX;
+      const currentWidth = imgRef.current.width;
+      let newWidth = currentWidth;
+      const transform = direction[1] === 'w' ? -1 : 1;
 
-    const removeListeners = () => {
-      window.removeEventListener('mousemove', mouseMoveHandler);
-      window.removeEventListener('mouseup', removeListeners);
-      updateAttributes({ width: newWidth });
-      setResizingStyle(undefined);
-    };
+      const removeListeners = () => {
+        window.removeEventListener('mousemove', mouseMoveHandler);
+        window.removeEventListener('mouseup', removeListeners);
+        updateAttributes({ width: newWidth });
+        setResizingStyle(undefined);
+      };
 
-    const mouseMoveHandler = (event: MouseEvent) => {
-      newWidth = Math.max(currentWidth + transform * (event.clientX - initialXPosition), MIN_WIDTH);
-      setResizingStyle({ width: newWidth });
-      // If mouse is up, remove event listeners
-      if (!event.buttons) removeListeners();
-    };
+      const mouseMoveHandler = (event: MouseEvent) => {
+        newWidth = Math.max(
+          currentWidth + transform * (event.clientX - initialXPosition),
+          MIN_WIDTH,
+        );
+        setResizingStyle({ width: newWidth });
+        // If mouse is up, remove event listeners
+        if (!event.buttons) removeListeners();
+      };
 
-    window.addEventListener('mousemove', mouseMoveHandler);
-    window.addEventListener('mouseup', removeListeners);
-  });
+      window.addEventListener('mousemove', mouseMoveHandler);
+      window.addEventListener('mouseup', removeListeners);
+    },
+  );
 
   const dragCornerButton = (direction: string) => (
     <div
@@ -117,7 +134,14 @@ const ResizableImage = ({ node, updateAttributes }: NodeViewProps) => {
             { top: 0, left: 0, width: '100%', height: '1px' },
             { bottom: 0, left: 0, width: '100%', height: '1px' },
           ].map((style, i) => (
-            <div key={i} style={{ position: 'absolute', backgroundColor: BORDER_COLOR, ...style }}></div>
+            <div
+              key={i}
+              style={{
+                position: 'absolute',
+                backgroundColor: BORDER_COLOR,
+                ...style,
+              }}
+            ></div>
           ))}
           {dragCornerButton('nw')}
           {dragCornerButton('ne')}
