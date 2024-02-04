@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import {
   CardBody,
@@ -58,6 +58,10 @@ export default function Weakness() {
       clusterWeakList.filter((value) => regex.test(value.name)),
     );
   };
+
+  useEffect(()=>{
+    console.log("test husky")
+  },[])
 
   return (
     <CardBody className="flex flex-col gap-3 ">

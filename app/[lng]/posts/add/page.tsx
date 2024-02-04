@@ -1,7 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import Editor from './editor/Editor';
 import Severity from './severity/Severity';
-import { Card, CardHeader, Spinner } from '@nextui-org/react';
 import Weakness from './weakness/Weakness';
 import ReportCard from './ReportCard';
 
