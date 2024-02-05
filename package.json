@@ -9,7 +9,14 @@
     "lint": "next lint",
     "server": "json-server --watch db.json --port 4444",
     "postinstall": "husky install",
-    "format": "prettier --cache --write ."
+    "format": "prettier --cache --write .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint",
+      "prettier --list-different"
+    ]
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
@@ -66,6 +73,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^9.0.10",
     "json-server": "^0.17.4",
+    "lint-staged": "^15.2.1",
     "postcss": "^8",
     "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.11",

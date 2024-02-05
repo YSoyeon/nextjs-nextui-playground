@@ -61,30 +61,30 @@ const ResizableImage = ({ node, updateAttributes }: NodeViewProps) => {
       let newWidth = currentWidth;
       const transform = direction[1] === 'w' ? -1 : 1;
 
-      const removeListeners = () => {
-        window.removeEventListener('mousemove', mouseMoveHandler);
-        window.removeEventListener('mouseup', removeListeners);
-        updateAttributes({ width: newWidth });
-        setResizingStyle(undefined);
-      };
-
-      const mouseMoveHandler = (event: MouseEvent) => {
+      const mouseMoveHandler = (e: MouseEvent) => {
         newWidth = Math.max(
-          currentWidth + transform * (event.clientX - initialXPosition),
+          currentWidth + transform * (e.clientX - initialXPosition),
           MIN_WIDTH,
         );
+        const removeListeners = () => {
+          window.removeEventListener('mousemove', mouseMoveHandler);
+          window.removeEventListener('mouseup', removeListeners);
+          updateAttributes({ width: newWidth });
+          setResizingStyle(undefined);
+        };
         setResizingStyle({ width: newWidth });
         // If mouse is up, remove event listeners
         if (!event.buttons) removeListeners();
       };
 
       window.addEventListener('mousemove', mouseMoveHandler);
-      window.addEventListener('mouseup', removeListeners);
+      // window.addEventListener('mouseup', removeListeners);
     },
   );
 
   const dragCornerButton = (direction: string) => (
     <div
+      id="drag"
       role="button"
       tabIndex={0}
       onMouseDown={handleMouseDown}

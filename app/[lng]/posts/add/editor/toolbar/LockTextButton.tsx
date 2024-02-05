@@ -9,7 +9,6 @@ import AlertModal from '@/app/components/modal/AlertModal';
 
 type Props = {
   editor: Editor;
-  isBlockSelected: boolean;
   blocks: BlockType[];
   setBlocks: React.Dispatch<React.SetStateAction<BlockType[]>>;
   activeSecuredId: string;
@@ -17,7 +16,6 @@ type Props = {
 
 const LockTextButton = ({
   editor,
-  isBlockSelected,
   blocks,
   setBlocks,
   activeSecuredId,
@@ -61,7 +59,7 @@ const LockTextButton = ({
       const lockInfo: BlockType = {
         id: `b${v4()}b`,
         encrypted: encrypt(text),
-        from: from,
+        from,
         to: from + lockLength,
       };
 
@@ -73,13 +71,14 @@ const LockTextButton = ({
 
   return (
     <button
+      type="button"
       onClick={onLock}
-      className={`p-1 ${isActive ? 'bg-slate-400 text-black rounded' : ''}`}
+      className={`p-1 ${isActive ? 'rounded bg-slate-400 text-black' : ''}`}
       aria-label="securedText"
     >
       {isActive ? <FaLock /> : <FaLockOpen />}
       <AlertModal
-        content={'개행된 문자열은 암호화할 수 없습니다.'}
+        content="개행된 문자열은 암호화할 수 없습니다."
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       />

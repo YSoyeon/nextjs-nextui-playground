@@ -24,8 +24,9 @@ const CommentButton = ({ editor, activateCommentingMode }: Props) => {
 
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`p-1 ${isActive ? 'bg-slate-400 text-black rounded' : ''}`}
+      className={`p-1 ${isActive ? 'rounded bg-slate-400 text-black' : ''}`}
       aria-label="securedText"
     >
       <BiCommentDetail />

@@ -4,7 +4,7 @@ import Severity from './severity/Severity';
 import Weakness from './weakness/Weakness';
 import ReportCard from './ReportCard';
 
-const Page = () => {
+function Page() {
   const contents: {
     title: string;
     description: string;
@@ -30,8 +30,8 @@ const Page = () => {
   ];
 
   return (
-    <div className="flex justify-center mt-5">
-      <div className="flex flex-col gap-5 items-center">
+    <div className="mt-5 flex justify-center">
+      <div className="flex flex-col items-center gap-5">
         <h1 className="text-xl font-bold">Submit Report</h1>
         {contents.map((value, i) => (
           <ReportCard
@@ -47,6 +47,6 @@ const Page = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Page;

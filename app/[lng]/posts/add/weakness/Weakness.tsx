@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import {
   CardBody,
@@ -34,7 +34,7 @@ export default function Weakness() {
   const [weakList, setWeakList] = useState<WeaknessType[]>(
     cwe ? cwe.weaknesses : [],
   );
-  const [clusterWeakList, setClusterWeakList] = useState<WeaknessType[]>([]); //검색 시 선택된 클러스터내에서 검색하기 위해 정의
+  const [clusterWeakList, setClusterWeakList] = useState<WeaknessType[]>([]);
   const [selectedCwe, setSelectedCwe] = useState<WeaknessType | null>(null);
 
   const onSelectCluster = (selection: Selection) => {
@@ -59,14 +59,10 @@ export default function Weakness() {
     );
   };
 
-  useEffect(()=>{
-    console.log("test husky")
-  },[])
-
   return (
     <CardBody className="flex flex-col gap-3 ">
       <div className="border-1">
-        <div className="flex gap-1 items-center border-b-1">
+        <div className="flex items-center gap-1 border-b-1">
           <Input
             classNames={{
               input: ['bg-transparent'],
@@ -115,16 +111,13 @@ export default function Weakness() {
           ))}
         </Listbox>
       </div>
-      <div className="bg-zinc-100	p-3 rounded">
+      <div className="rounded	bg-zinc-100 p-3">
         <span>
           <span className="text-slate-500">Currently selected:</span>
           {selectedCwe ? (
-            <span
-              className="text-blue-600 cursor-pointer"
-              onClick={() => setSelectedCwe(null)}
-            >
-              (Deselect)
-            </span>
+            <button type="button" onClick={() => setSelectedCwe(null)}>
+              <span className="cursor-pointer text-blue-600">(Deselect)</span>
+            </button>
           ) : (
             'None'
           )}

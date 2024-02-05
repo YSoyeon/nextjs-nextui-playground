@@ -1,13 +1,13 @@
 'use client';
 
 import { Switch } from '@nextui-org/react';
-import React from 'react';
-import { SunIcon } from '../icon/SunIcon';
-import { MoonIcon } from '../icon/MoonIcon';
 import { useTheme } from 'next-themes';
+import React from 'react';
+import SunIcon from '../icon/SunIcon';
+import MoonIcon from '../icon/MoonIcon';
 
 const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   return (
     <Switch

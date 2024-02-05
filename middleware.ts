@@ -1,16 +1,16 @@
 import { NextResponse } from 'next/server';
-import { defaultLocale, locales, cookieName } from './app/i18n/settings';
 import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
+import { defaultLocale, locales } from './app/i18n/settings';
 
 function getLocale(request: any) {
-  let headers = { 'accept-language': request.headers.get('accept-language') };
-  let languages = new Negotiator({ headers }).languages();
+  const headers = { 'accept-language': request.headers.get('accept-language') };
+  const languages = new Negotiator({ headers }).languages();
 
   return match(languages, locales, defaultLocale);
 }
 
-export function middleware(req: any) {
+export default function middleware(req: any) {
   const lng = getLocale(req);
 
   const isPathStartsWithLocale = locales.some((v) =>

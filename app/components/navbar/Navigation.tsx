@@ -8,10 +8,10 @@ import {
   NavbarItem,
 } from '@nextui-org/react';
 
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import SignController from './SignController';
 
 const Navigation = ({ lng }: { lng: any }) => {
@@ -36,7 +36,7 @@ const Navigation = ({ lng }: { lng: any }) => {
           <p className="font-bold text-inherit">TEST</p>
         </Link>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         <NavbarItem isActive={pathName === ''}>
           <Link color="secondary" href="/">
             Dashboard

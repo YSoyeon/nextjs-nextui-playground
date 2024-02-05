@@ -1,6 +1,6 @@
-import React from 'react'
-import { Button, Card, Link } from '@nextui-org/react'
-import { getPosts } from '@/lib/get-posts'
+import React from 'react';
+import { Button, Card, Link } from '@nextui-org/react';
+import { getPosts } from '@/lib/get-posts';
 
 // async function getPosts() {
 // 	const res = await fetch("http://localhost:4444/posts");
@@ -10,13 +10,11 @@ import { getPosts } from '@/lib/get-posts'
 // const session = null
 
 export default async function Page() {
-  const posts: PostType[] = await getPosts()
+  const posts: PostType[] = await getPosts();
 
   // if (session == null) {
   // 	throw new Error("no session provided");
   // }
-
-
 
   return (
     <div className="mt-10 flex flex-col gap-4">
@@ -33,5 +31,5 @@ export default async function Page() {
         <Button>+</Button>
       </Link>
     </div>
-  )
+  );
 }

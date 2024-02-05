@@ -1,6 +1,5 @@
 import {
   Button,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
@@ -38,12 +37,13 @@ const MediaButton = ({ editor, type }: Props) => {
         })
         .run();
     }
-    close();
+    // close();
   };
 
   return (
     <>
       <button
+        type="button"
         onClick={() => {
           onOpen();
         }}
@@ -61,7 +61,7 @@ const MediaButton = ({ editor, type }: Props) => {
               <ModalBody>
                 <label>{mediaType} URL</label>
                 <input
-                  className="border-1 border-black rounded p-1 rounded-sm"
+                  className="rounded rounded-sm border-1 border-black p-1"
                   type="text"
                   ref={inputRef}
                 />

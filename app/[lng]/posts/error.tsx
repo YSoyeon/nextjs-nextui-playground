@@ -3,19 +3,19 @@
 import React from 'react';
 
 type ErrorUIProps = {
-  error: unknown;
   reset: () => void;
 };
 
-export default function Error({ error, reset }: ErrorUIProps) {
+export default function Error({ reset }: ErrorUIProps) {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold mb-4">Oops! Something went wrong.</h1>
-      <p className="text-gray-600 text-lg mb-8">
+    <div className="flex h-screen flex-col items-center justify-center">
+      <h1 className="mb-4 text-4xl font-bold">Oops! Something went wrong.</h1>
+      <p className="mb-8 text-lg text-gray-600">
         We apologize for the inconvenience. Please try again later.
       </p>
       <button
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        type="button"
+        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         onClick={reset}
       >
         Retry

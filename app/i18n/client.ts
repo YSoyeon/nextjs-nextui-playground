@@ -29,7 +29,7 @@ i18next
 
 const runsOnServerSide = typeof window === 'undefined';
 
-export function useTranslation(lng: string, ns: string, options = {}) {
+export default function useTranslation(lng: string, ns: string, options = {}) {
   const ret = useTranslationOrg(ns, options);
   const { i18n } = ret;
   if (runsOnServerSide && i18n.resolvedLanguage !== lng) {

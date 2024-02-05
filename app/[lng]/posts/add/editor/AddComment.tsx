@@ -38,9 +38,9 @@ const AddComment = ({ editor, setComment, close }: Props) => {
   };
 
   return (
-    <div className="p-1 flex flex-col justify-center gap-1">
-      <textarea className="focus:outline-none border-1" ref={commentRef} />
-      <div className="flex gap-1 justify-center">
+    <div className="flex flex-col justify-center gap-1 p-1">
+      <textarea className="border-1 focus:outline-none" ref={commentRef} />
+      <div className="flex justify-center gap-1">
         <Button color="primary" className="text-white" onClick={close}>
           cancel
         </Button>

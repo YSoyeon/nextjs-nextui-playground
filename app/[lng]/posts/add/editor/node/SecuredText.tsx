@@ -66,7 +66,7 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
   },
 
   onSelectionUpdate() {
-    const { $from, $to } = this.editor.state.selection;
+    const { $to } = this.editor.state.selection;
 
     const marks = $to.marks();
 
@@ -139,7 +139,7 @@ export const SecuredText = Mark.create<SecuredOptions, SecuredStorage>({
             tr.removeMark(range.from, range.to, mark);
           });
 
-          //tr.replaceSelectionWith(this.editor.schema.text(text));
+          // tr.replaceSelectionWith(this.editor.schema.text(text));
           tr.replaceWith(
             lockedInfo.from,
             lockedInfo.to,
