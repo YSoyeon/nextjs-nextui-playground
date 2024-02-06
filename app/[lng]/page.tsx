@@ -1,5 +1,5 @@
 import Link from '../components/Link';
-import { useTranslation } from '../i18n';
+import useTranslation from '../i18n';
 
 interface Props {
   params: {
