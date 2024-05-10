@@ -1,6 +1,9 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import { Button, Card, Link } from '@nextui-org/react';
 import { getPosts } from '@/lib/get-posts';
+import { notFound } from 'next/navigation';
 
 // async function getPosts() {
 // 	const res = await fetch("http://localhost:4444/posts");
@@ -18,18 +21,20 @@ export default async function Page() {
 
   return (
     <div className="mt-10 flex flex-col gap-4">
-      {posts.map((post) => (
-        <Link key={post.id} href={`/posts/${post.id}`}>
-          <Card className="cursor-pointer p-8">
-            {post.id}
-            {post.title}
-          </Card>
-        </Link>
-      ))}
+      <section>
+        {posts.map((post) => (
+          <Link key={post.id} href={`/posts/${post.id}`}>
+            <Card className="cursor-pointer p-8">
+              {post.id}
+              {post.title}
+            </Card>
+          </Link>
+        ))}
 
-      <Link href="/posts/add">
-        <Button>+</Button>
-      </Link>
+        <Link href="/posts/add">
+          <Button>+</Button>
+        </Link>
+      </section>
     </div>
   );
 }

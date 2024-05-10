@@ -13,12 +13,11 @@ export const getRandomSecuredLength = (length: number): number => {
   return result;
 };
 
-export const encrypt = (text: string) => {
-  return CryptoJS.AES.encrypt(
+export const encrypt = (text: string) =>  CryptoJS.AES.encrypt(
     text,
     process.env.NEXT_PUBLIC_TEXT_ENCRYPT_KEY!,
-  ).toString();
-};
+  ).toString()
+
 
 export const descrypt = (text: string) => {
   try {

@@ -49,7 +49,7 @@ const Navigation = ({ lng }: { lng: any }) => {
         </NavbarItem>
         <NavbarItem isActive={pathName === 'calendar'}>
           <Link color="secondary" href="/calendar">
-            Calendar
+            Autocomplete
           </Link>
         </NavbarItem>
       </NavbarContent>

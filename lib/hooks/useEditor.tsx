@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import StarterKit from '@tiptap/starter-kit';
-import Paragraph from '@tiptap/extension-paragraph';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import TaskList from '@tiptap/extension-task-list';
 import TaskItem from '@tiptap/extension-task-item';
+import Paragraph from '@tiptap/extension-paragraph';
+
+
 import {
   ReactNodeViewRenderer,
   useEditor as useTiptapEditor,
