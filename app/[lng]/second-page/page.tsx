@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from '@/app/components/Link';
-import { useTranslation } from '@/app/i18n';
+import useTranslation from '@/app/i18n';
 
 const Page = async ({ params: { lng } }: any) => {
   const { t } = await useTranslation(lng, 'second-page');
