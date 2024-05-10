@@ -1,14 +1,13 @@
-import React, { Suspense } from 'react';
-import { Button, Card, Link, Spinner } from '@nextui-org/react';
+import React from 'react';
+import { Button, Card, Link } from '@nextui-org/react';
 import { getPosts } from '@/lib/get-posts';
-import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 
 // async function getPosts() {
 // 	const res = await fetch("http://localhost:4444/posts");
 // 	return res.json();
 // }
 
-const session = null;
+// const session = null
 
 export default async function Page() {
   const posts: PostType[] = await getPosts();
@@ -21,7 +20,7 @@ export default async function Page() {
     <div className="mt-10 flex flex-col gap-4">
       {posts.map((post) => (
         <Link key={post.id} href={`/posts/${post.id}`}>
-          <Card className="p-8 cursor-pointer">
+          <Card className="cursor-pointer p-8">
             {post.id}
             {post.title}
           </Card>

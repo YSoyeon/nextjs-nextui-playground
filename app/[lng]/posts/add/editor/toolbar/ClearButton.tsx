@@ -21,7 +21,8 @@ const ClearButton = ({ editor }: Props) => {
   return (
     <>
       <button
-        className="bg-sky-300	p-1 rounded"
+        type="button"
+        className="rounded	bg-sky-300 p-1"
         onClick={() => {
           onOpen();
           //  editor.commands.clearContent()

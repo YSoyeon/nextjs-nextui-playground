@@ -21,35 +21,33 @@ const ConfirmModal = ({
   onConfirm,
   title,
   content,
-}: Props) => {
-  return (
-    <Modal backdrop="opaque" isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent>
-        {(onClose) => (
-          <>
-            {title && (
-              <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
-            )}
-            <ModalBody>{content}</ModalBody>
-            <ModalFooter>
-              <Button color="danger" onPress={onClose}>
-                취소
-              </Button>
-              <Button
-                color="primary"
-                onPress={() => {
-                  onClose();
-                  onConfirm();
-                }}
-              >
-                확인
-              </Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
-  );
-};
+}: Props) => (
+  <Modal backdrop="opaque" isOpen={isOpen} onOpenChange={onOpenChange}>
+    <ModalContent>
+      {(onClose) => (
+        <>
+          {title && (
+            <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
+          )}
+          <ModalBody>{content}</ModalBody>
+          <ModalFooter>
+            <Button color="danger" onPress={onClose}>
+              취소
+            </Button>
+            <Button
+              color="primary"
+              onPress={() => {
+                onClose();
+                onConfirm();
+              }}
+            >
+              확인
+            </Button>
+          </ModalFooter>
+        </>
+      )}
+    </ModalContent>
+  </Modal>
+);
 
 export default ConfirmModal;

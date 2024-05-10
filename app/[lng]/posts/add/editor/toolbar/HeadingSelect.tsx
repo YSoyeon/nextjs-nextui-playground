@@ -20,7 +20,7 @@ const HeadingSelect = ({ editor }: Props) => {
   const [selected, setSelected] = useState('');
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
+    const { value } = e.target;
 
     if (value === 'normal') {
       editor.chain().focus().setParagraph().run();
@@ -28,7 +28,7 @@ const HeadingSelect = ({ editor }: Props) => {
       editor
         .chain()
         .focus()
-        .setHeading({ level: parseInt(value[1]) as Level })
+        .setHeading({ level: parseInt(value[1], 10) as Level })
         .run();
     }
 

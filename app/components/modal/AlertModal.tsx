@@ -22,32 +22,30 @@ const AlertModal = ({
   onConfirm,
   title,
   content,
-}: Props) => {
-  return (
-    <Modal backdrop="opaque" isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent>
-        {(onClose) => (
-          <>
-            {title && (
-              <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
-            )}
-            <ModalBody>{content}</ModalBody>
-            <ModalFooter>
-              <Button
-                className="bg-green-500"
-                onPress={() => {
-                  onClose();
-                  if (onConfirm) onConfirm();
-                }}
-              >
-                확인
-              </Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
-  );
-};
+}: Props) => (
+  <Modal backdrop="opaque" isOpen={isOpen} onOpenChange={onOpenChange}>
+    <ModalContent>
+      {(onClose) => (
+        <>
+          {title && (
+            <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
+          )}
+          <ModalBody>{content}</ModalBody>
+          <ModalFooter>
+            <Button
+              className="bg-green-500"
+              onPress={() => {
+                onClose();
+                if (onConfirm) onConfirm();
+              }}
+            >
+              확인
+            </Button>
+          </ModalFooter>
+        </>
+      )}
+    </ModalContent>
+  </Modal>
+);
 
 export default AlertModal;

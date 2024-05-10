@@ -3,17 +3,17 @@
 import React, { useEffect, useState } from 'react';
 import './Editor.css';
 import { BubbleMenu, EditorContent } from '@tiptap/react';
-import Toolbar from './toolbar/Toolbar';
 
+import _ from 'lodash';
+import { v4 } from 'uuid';
+import { CardBody } from '@nextui-org/react';
 import 'highlight.js/styles/github-dark.css';
 import useEditor from '@/lib/hooks/useEditor';
 import Drawer from '@/app/components/Drawer';
 import CommentList from './CommentList';
-import { v4 } from 'uuid';
-import _ from 'lodash';
 import BubbleToolbar from './toolbar/BubbleToolbar';
 import AddComment from './AddComment';
-import { CardBody } from '@nextui-org/react';
+import Toolbar from './toolbar/Toolbar';
 
 const Editor = () => {
   const [isActiveDrawer, setIsActiveDrawer] = useState<boolean>(false);
@@ -68,7 +68,7 @@ const Editor = () => {
   return (
     <CardBody>
       {editor && (
-        <div className="flex flex-col gap-3 justify-center items-center">
+        <div className="flex flex-col items-center justify-center gap-3">
           <Toolbar
             editor={editor}
             activeSecuredId={activeSecuredId}
@@ -88,7 +88,7 @@ const Editor = () => {
             onClick={activateEditor}
           />
           <BubbleMenu editor={editor}>
-            <div className="bg-white border-2 p-1">
+            <div className="border-2 bg-white p-1">
               {isCommentingMode ? (
                 <AddComment
                   editor={editor}

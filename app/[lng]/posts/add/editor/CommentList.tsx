@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useInput from '@/lib/hooks/useInput';
 import { Input } from '@nextui-org/react';
 
@@ -54,6 +54,7 @@ const CommentList = ({ commentObj, addComment }: Props) => {
             placeholder="Add a comment"
           />
           <button
+            type="button"
             onClick={() => {
               addComment(commentObj.parentId, value);
               setValue('');

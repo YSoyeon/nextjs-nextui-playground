@@ -1,11 +1,10 @@
 import { Spinner } from '@nextui-org/react';
 import React from 'react';
 
-const Loading = () => {
-  return (
-    <div className="flex h-screen w-screen justify-center align-center">
-      <Spinner />
-    </div>
-  );
-};
+const Loading = () => (
+  <div className="align-center flex h-screen w-screen justify-center">
+    <Spinner />
+  </div>
+);
+
 export default Loading;

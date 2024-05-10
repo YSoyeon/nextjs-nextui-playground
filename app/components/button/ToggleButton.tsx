@@ -1,4 +1,3 @@
-import { Editor } from '@tiptap/react';
 import React, { useEffect, useState } from 'react';
 
 type Props = {
@@ -20,7 +19,8 @@ const ToggleButton = ({ children, onClick, selected }: Props) => {
   }, [selected]);
   return (
     <button
-      className={`p-1 ${on ? 'bg-slate-400 text-black rounded' : ''}`}
+      type="button"
+      className={`p-1 ${on ? 'rounded bg-slate-400 text-black' : ''}`}
       onClick={onClickButton}
     >
       {children}
